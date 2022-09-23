@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import frc.robot.commands.ShootWithJoystick;
+
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ShootBall;
@@ -21,13 +25,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private static final XboxController driverController = new XboxController(0);
   private final Shooter m_shooter = new Shooter();
+  private final Shooter shooter = new Shooter();
 
   private final ShootBall m_autoCommand = new ShootBall(m_shooter);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings();
+    configureButtonBindings(null);
+      
+
   }
 
   /**
@@ -35,9 +42,11 @@ public class RobotContainer {
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * @param throttle 
    */
-  private void configureButtonBindings() {
+  private void configureButtonBindings(DoubleSupplier throttle) {
     new JoystickButton(driverController, XboxController.Button.kRightBumper.value).whileHeld(new ShootBall(m_shooter));
+    new JoystickButton(driverController, XboxController.Axis.kLeftY.value).whileHeld(new ShootWithJoystick(shooter, throttle));
   }
 
   /**

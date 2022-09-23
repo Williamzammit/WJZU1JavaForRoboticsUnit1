@@ -20,7 +20,6 @@ public class Shooter extends SubsystemBase {
   private double voltage;
   public Shooter() {
 
-    
     REVPhysicsSim.getInstance().addSparkMax(motor1, DCMotor.getNEO(1));
     REVPhysicsSim.getInstance().addSparkMax(motor2, DCMotor.getNEO(1));
     speed = 0.0;
@@ -36,7 +35,6 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     motor1.set(speed);
     motor2.set(speed);
-
   }
 
   @Override
@@ -46,10 +44,17 @@ public class Shooter extends SubsystemBase {
     motor2.setVoltage(voltage);
   }
 
+  public void setJoystickSpeed(double throttle){
+
+    speed = throttle;
+    voltage = speed;
+  }
+
   public void setMotorSpeed() {
     speed = 0.5;
     voltage = speed;
   }
+
   public void stopMotor() {
     speed = 0.0;
     voltage = speed;
