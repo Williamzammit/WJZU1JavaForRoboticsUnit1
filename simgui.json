@@ -1,0 +1,33 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [61]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [62]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [98]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [99]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Shooter": "Subsystem",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+    }
+  }
+}
