@@ -25,14 +25,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private static final XboxController driverController = new XboxController(0);
   private final Shooter m_shooter = new Shooter();
-  private final Shooter shooter = new Shooter();
 
   private final ShootBall m_autoCommand = new ShootBall(m_shooter);
 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    m_shooter.setDefaultCommand(new ShootWithJoystick(m_shooter, () -> driverController.getLeftY()));
     // Configure the button bindings
-    configureButtonBindings(null);
+    configureButtonBindings();
       
 
   }
@@ -44,9 +46,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    * @param throttle 
    */
-  private void configureButtonBindings(DoubleSupplier throttle) {
+  private void configureButtonBindings() {
     new JoystickButton(driverController, XboxController.Button.kRightBumper.value).whileHeld(new ShootBall(m_shooter));
-    new JoystickButton(driverController, XboxController.Axis.kLeftY.value).whileHeld(new ShootWithJoystick(shooter, throttle));
+    //new JoystickButton(driverController, XboxController.Axis.kLeftY.value).whileHeld(new ShootWithJoystick(m_shooter, () -> driverController.getLeftY()));
   }
 
   /**
