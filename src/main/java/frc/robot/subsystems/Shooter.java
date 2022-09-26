@@ -12,16 +12,17 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private CANSparkMax motor1 = new CANSparkMax(motor1id, MotorType.kBrushless);
-  private CANSparkMax motor2 = new CANSparkMax(motor2id, MotorType.kBrushless);
   private static final int motor1id=61;
   private static final int motor2id=62;
-  private double speed;
+  
+  private CANSparkMax motor1 = new CANSparkMax(motor1id, MotorType.kBrushless);
+  private CANSparkMax motor2 = new CANSparkMax(motor2id, MotorType.kBrushless);
+    private double speed;
   private double voltage;
   public Shooter() {
 
-    REVPhysicsSim.getInstance().addSparkMax(motor1, DCMotor.getNEO(1));
-    REVPhysicsSim.getInstance().addSparkMax(motor2, DCMotor.getNEO(1));
+    REVPhysicsSim.getInstance().addSparkMax(motor1, DCMotor.getNeo550(1));
+    REVPhysicsSim.getInstance().addSparkMax(motor2, DCMotor.getNeo550(1));
     speed = 0.0;
     voltage = 0.0;
 
@@ -45,7 +46,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setJoystickSpeed(double throttle){
-
     speed = throttle;
     voltage = speed;
   }
