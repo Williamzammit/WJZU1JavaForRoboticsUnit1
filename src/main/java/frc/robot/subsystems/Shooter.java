@@ -14,7 +14,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private static final int motor1id=61;
   private static final int motor2id=62;
-  
+
   private CANSparkMax motor1 = new CANSparkMax(motor1id, MotorType.kBrushless);
   private CANSparkMax motor2 = new CANSparkMax(motor2id, MotorType.kBrushless);
     private double speed;
@@ -47,7 +47,7 @@ public class Shooter extends SubsystemBase {
 
   public void setJoystickSpeed(double throttle){
     speed = throttle;
-    voltage = speed;
+    voltage = speed*12;
   }
 
   public void setMotorSpeed() {

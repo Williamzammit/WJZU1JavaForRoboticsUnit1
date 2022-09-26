@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ShootWithJoystick extends CommandBase {
 
   private final Shooter m_shooter;
-  public final double m_throttle;
+  public final DoubleSupplier m_throttle;
 
   /** Creates a new ShootWithJoystick. */
   public ShootWithJoystick(Shooter shooter, DoubleSupplier throttle) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
-    m_throttle = throttle.getAsDouble();
+    m_throttle = throttle;
 
 
     addRequirements(shooter);
@@ -34,7 +34,7 @@ public class ShootWithJoystick extends CommandBase {
   @Override
   public void execute() {
 
-    m_shooter.setJoystickSpeed(m_throttle);
+    m_shooter.setJoystickSpeed(m_throttle.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
