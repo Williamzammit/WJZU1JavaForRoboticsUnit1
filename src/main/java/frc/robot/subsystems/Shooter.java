@@ -37,7 +37,6 @@ public class Shooter extends SubsystemBase {
     motor1.set(speed);
     motor2.set(speed);
     System.out.println(speed);
-    
   }
 
   @Override
