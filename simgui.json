@@ -36,13 +36,5 @@
         }
       }
     }
-  },
-  "NetworkTables": {
-    "FMSInfo": {
-      "open": true
-    },
-    "LiveWindow": {
-      "open": true
-    }
   }
 }

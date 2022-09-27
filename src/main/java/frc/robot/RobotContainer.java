@@ -35,7 +35,7 @@ public class RobotContainer {
     m_shooter.setDefaultCommand(new ShootWithJoystick(m_shooter, () -> driverController.getLeftY()));
     // Configure the button bindings
     configureButtonBindings();
-      
+
 
   }
 
