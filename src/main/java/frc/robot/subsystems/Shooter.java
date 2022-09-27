@@ -17,25 +17,25 @@ public class Shooter extends SubsystemBase {
 
   private CANSparkMax motor1 = new CANSparkMax(motor1id, MotorType.kBrushless);
   private CANSparkMax motor2 = new CANSparkMax(motor2id, MotorType.kBrushless);
-    private double speed;
+  private double motor1speed;
+  private double motor2speed;
   private double voltage;
   public Shooter() {
 
     REVPhysicsSim.getInstance().addSparkMax(motor1, DCMotor.getNeo550(1));
     REVPhysicsSim.getInstance().addSparkMax(motor2, DCMotor.getNeo550(1));
-    speed = 0.0;
+    motor1speed = 0.0;
+    motor2speed = 0.0;
     voltage = 0.0;
 
-    motor2.setInverted(true);
-    
-    //motor2.follow(motor1, true);
+    //Shooter.setInverted(motor2, true);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    motor1.set(speed);
-    motor2.set(speed);
+    motor1.set(motor1speed);
+    motor2.set(motor2speed);
   }
 
   @Override
@@ -46,17 +46,20 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setJoystickSpeed(double throttle){
-    speed = throttle;
-    voltage = speed*12;
+    motor1speed = throttle;
+    motor2speed = throttle;
+    voltage = motor1speed*12;
   }
 
   public void setMotorSpeed() {
-    speed = 0.5;
-    voltage = speed;
+    motor1speed = 0.5;
+    motor2speed = -0.5;
+    voltage = motor1speed;
   }
 
   public void stopMotor() {
-    speed = 0.0;
-    voltage = speed;
+    motor1speed = 0.0;
+    motor2speed = 0.0;
+    voltage = motor1speed;
   }
 }
